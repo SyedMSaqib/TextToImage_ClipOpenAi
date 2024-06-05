@@ -5,7 +5,6 @@ from sklearn.metrics.pairwise import cosine_similarity
 import pickle
 
 
-captions_file = r'C:\Users\SAQIB\PycharmProjects\Resnet50\GenerativeAi\Flickr_Data\Flickr_Data\Flickr_TextData\Flickr8k.token.txt'
 
 
 images_path = r'C:\Users\SAQIB\PycharmProjects\Resnet50\GenerativeAi\Flickr_Data\Flickr_Data\Images'
@@ -15,19 +14,6 @@ embeddings_file = 'image_embeddings.pkl'
 
 
 
-def load_captions(captions_file):
-    with open(captions_file, 'r') as f:
-        captions_data = f.readlines()
-    captions_dict = {}
-    for line in captions_data:
-        parts = line.strip().split('\t')
-        image_file, caption = parts[0].split('#')[0], parts[1]
-        if image_file not in captions_dict:
-            captions_dict[image_file] = []
-        captions_dict[image_file].append(caption)
-    return captions_dict
-
-captions_dict = load_captions(captions_file)
 
 
 clip_model = CLIPModel.from_pretrained("openai/clip-vit-base-patch32")
@@ -98,6 +84,9 @@ def find_best_match(input_text, image_embeddings):
             best_score = score
             best_image_file = image_file
     print(f"Best score: {best_score}")
+    # print(f"Text Embedding: {text_embedding}")
+    # print(f"image Embedding: {image_embedding}")
+
     return best_image_file
 
 # CLI Interface
