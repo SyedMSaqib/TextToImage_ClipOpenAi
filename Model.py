@@ -14,6 +14,7 @@ images_path = r'C:\Users\SAQIB\PycharmProjects\Resnet50\GenerativeAi\Flickr_Data
 embeddings_file = 'image_embeddings.pkl'
 
 
+
 def load_captions(captions_file):
     with open(captions_file, 'r') as f:
         captions_data = f.readlines()
